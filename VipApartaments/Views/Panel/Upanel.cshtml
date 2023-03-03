@@ -1,0 +1,71 @@
+﻿@model List<VipApartaments.Controllers.Panel.detailsModel>
+ @{
+	 Layout = "~/Views/Shared/_LayoutU.cshtml";}
+<style>
+      p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+        table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: white;
+  color: #333;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+th {
+  font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #ddd;
+}
+    </style>
+   
+    <p>Oto Twoje rezerwacje, jeżeli pole jest puste dokonaj nowej rezerwacji  </p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Pokój</th>
+            <th>Przyjazd</th>
+            <th>Odjezd</th>
+            <th>Do zapłaty PLN</th>
+             <th>Do zapłaty EUR</th>
+            <th>Zapłacone</th>
+            
+        </tr>
+    </thead> 
+    <tbody>
+        @foreach (var x in Model)
+        {
+        <tr>
+            <td>@x.Id</td>
+            <td>@x.RoomType </td>
+            <td>@x.DateFrom.ToString("dd/MM/yyyy")</td>
+            <td>@x.DateFrom.ToString("dd/MM/yyyy")</td>
+            <td>@x.ToPay</td>
+            <td> @x.ToPayEUR</td>
+            <td>@x.Pay</td>
+           
+        </tr>
+        }
+       
+        </tbody>
+</table>
+<button type="submit" asp-action="Upanel" >Edytuj </button>

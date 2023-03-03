@@ -1,0 +1,168 @@
+﻿@model IEnumerable<VipApartaments.Models.Rooms>
+ @{
+	 Layout = "~/Views/Shared/_LayoutU.cshtml";
+    ViewData["Title"] = "Index";
+}
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+<style>
+	body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f7f7f7;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.section-center {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1170px;
+}
+
+.booking-cta {
+  background-color: #fff;
+  padding: 60px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.booking-cta h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.booking-cta p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #777;
+  line-height: 1.5;
+}
+
+.booking-form {
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.booking-form .form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.booking-form .form-control {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: #f7f7f7;
+  color: #333;
+  height: 50px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.booking-form .select-arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 6px 6px 6px;
+  border-color: transparent transparent #333 transparent;
+}
+
+.booking-form .submit-btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 16px 40px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.alert-primary {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+	</style>
+</head>
+
+<body>
+	<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-md-push-5">
+						<div class="booking-cta">
+							<h1>Dokonaj rezerwacji</h1>
+							<p>Jeśli planujesz podróż i chcesz dokonać rezerwacji, ważne jest, aby wybrać odpowiednią datę oraz rodzaj pokoju, który spełni Twoje oczekiwania.
+							</p>
+						</div>
+					</div>
+					<div class="col-md-7 col-md-pull-7">
+						<div class="booking-form">
+							<form method ="POST">
+								<div class="form-group">
+									<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<span class="form-label" for="DateFrom">Check In</span>
+											<input class="form-control" id="DateFrom" name="DateFrom" type="date" required>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<span class="form-label" for="DateTo">Check out</span>
+											<input class="form-control"id="DateTo" name="DateTo"  type="date" required>
+										</div>
+									</div>
+								
+								<div class="row">
+									<div class="col-sm-7">
+										<div class="form-group">
+											<span class="form-label" for="select_type" >Rodzaj Pokoju</span>
+											<select  id="select_type" name="select_type">
+												@foreach (var room in Model)
+												{
+													<option value="@room.Id">@room.RoomType</option>
+												}
+											</select>
+											<span class="select-arrow"></span>
+										</div>
+									</div>
+								@if (ViewData["Message"] != null)
+							 {
+							<div class="alert alert-primary">
+							 @ViewData["Message"]
+							 </div>
+							 }
+								<div class="form-btn">
+									<button type="submit" class="submit-btn">Zarezerwuj</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
